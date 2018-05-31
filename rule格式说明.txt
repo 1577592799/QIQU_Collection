@@ -1,0 +1,47 @@
+
+固定字符说明：
+root 根节点
+
+1,rule 解析内容规则节点
+[title],[content],[author],[createtime] 为自定义节点,内嵌xpath规则格式
+
+2,filter 过滤内容节点
+remove 移除-固定命令
+[author],[createtime] 为需要移除的节点,内嵌移除指定的字符,表示将author对应的内容移除,与rule中的author节点对应
+
+split 分隔-固定命令 separator-为属性,表示以什么样的字符进行分隔
+[title] 为需要分隔的节点,内嵌分隔后数据的索引,表示将title字符串以|形式分隔后,取坐标为0的索引数据
+
+match 正则匹配-固定命令
+内嵌的是正则表达式,表从的内容中匹配出指定格式的数据
+
+replace 替换-固定命令 pattern-为属性,表示需要替换的字符串或者正则表达式
+[content] 为需要替换的内容,内嵌替换后的字符
+
+3,download 下载内容节点
+[content] 内嵌下载数据的格式（image|doc|xls等）为从当前内容获取指定格式的数据进行下载操作
+
+例如：
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <domain>http://www.fsdpp.cn</domain>
+  <rule>
+    <title>//*[@id="post-408"]/h1/a</title>
+    <content>//*[@id="a408"]</content>
+    <author>//*[@id="post-408"]/div[1]/span[1]</author>
+    <createtime>//*[@id="post-408"]/div[1]/span[2]</createtime>
+  </rule>
+  <filter>
+    <remove>
+      <author>来源：</author>
+      <createtime>发表于：</createtime>
+      <createtime>|</createtime>
+    </remove>
+    <replace>
+      <content pattern="<\s*script(\s|.)*?script\s*\>">replacement</content>
+    </replace>
+  </filter>
+  <download>
+    <content>image</content>
+  </download>
+</root>

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+
+
+<input type="text" id="txt_domain" name="domain" />
+<input type="button" id="btn_search" name="search" value="查看" />
+<br />
+<div id="div_result">
+
+</div>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btn_search").click(function () {
+            Search();
+        });
+    });
+
+    function Search() {
+        var txt = $("#txt_domain").val();
+        $.get("/home/search", { domain: txt }, function (data) {
+            $("#div_result").html(data);
+        });
+    }
+</script>

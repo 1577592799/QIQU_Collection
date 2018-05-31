@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Show";
+}
+
+@if (ViewBag.ResultDic != null && ViewBag.ResultDic.Count > 0)
+{
+    <table>
+        @foreach (var item in ViewBag.ResultDic)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@(new HtmlString(item.Value))</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>没有数据</div>
+}
+

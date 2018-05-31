@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<table style="width:100%;">
+    <tr>
+        <th style="text-align:left;">id - link</th>
+        <th>未处理</th>
+        <th>已处理</th>
+        <th>id - level</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">@(new HtmlString(ViewBag.Html1))</td>
+        <td style="vertical-align: top; text-align: center;">@(new HtmlString(ViewBag.Html2))</td>
+        <td style="vertical-align: top; text-align: center;">@(new HtmlString(ViewBag.Html4))</td>
+        <td style="vertical-align: top;text-align:center;">@(new HtmlString(ViewBag.Html3))</td>
+    </tr>
+</table>
